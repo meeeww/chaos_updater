@@ -10,18 +10,17 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206"
 const handler = async function (event, context) {
     await axios.get("https://api.chaoschampionship.com/.netlify/functions/api/usuarios").then(async function (response1) {
         if (response1.status == 200) {
-            for (let cuenta in response1.data) {
+            for (let usuario in response1.data) {
                 try {
-                    if (response1.data[cuenta]["id_ingame"] == null) {
+                    if (response1.data[usuario]["id_ingame"] == null) {
                         console.log("hey3")
-                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + response1.data[cuenta]["nombre_ingame"] + "?api_key=" + API).then(async function (response2) {
-                            console.log({ idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] })
-                            await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
+                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + response1.data[usuario]["nombre_ingame"] + "?api_key=" + API).then(async function (response2) {
+                            await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idUsuario: response1.data[usuario]["id_usuario"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
                         })
                     } else {
-                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" + response1.data[cuenta]["puuid_ingame"] + "?api_key=" + API).then(async function (response2) {
-                            if (response1.data[cuenta]["nombre_ingame"] != response2.data["name"]) {
-                                await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/nombre", { nombreRiot: response2.data["name"], idUsuario: response1.data[cuenta]["id_usuario"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
+                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" + response1.data[usuario]["puuid_ingame"] + "?api_key=" + API).then(async function (response2) {
+                            if (response1.data[usuario]["nombre_ingame"] != response2.data["name"]) {
+                                await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/nombre", { nombreRiot: response2.data["name"], idUsuario: response1.data[usuario]["id_usuario"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
                             }
                         })
                     }
