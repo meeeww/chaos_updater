@@ -9,14 +9,13 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206"
 
 const handler = async function (event, context) {
     await axios.get("https://api.chaoschampionship.com/.netlify/functions/api/usuarios").then(async function (response1) {
-        console.log("hey")
         if (response1.status == 200) {
-            console.log("hey2")
             for (let cuenta in response1.data) {
-                console.log("hey3")
                 try {
                     if (response1.data[cuenta]["id_ingame"] == null) {
+                        console.log("hey3")
                         await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + response1.data[cuenta]["nombre_ingame"] + "?api_key=" + API).then(async function (response2) {
+                            console.log({ idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] })
                             await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
                         })
                     } else {
