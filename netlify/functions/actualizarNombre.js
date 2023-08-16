@@ -11,16 +11,20 @@ const handler = async function (event, context) {
     await axios.get("https://api.chaoschampionship.com/.netlify/functions/api/usuarios").then(async function (response1) {
         if (response1.status == 200) {
             for (let cuenta in response1.data) {
-                if (response1.data[cuenta]["id_ingame"] == null) {
-                    await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + response1.data[cuenta]["nombre_ingame"] + "?api_key=" + API).then(async function (response2) {
-                        await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
-                    })
-                } else {
-                    await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" + response1.data[cuenta]["puuid_ingame"] + "?api_key=" + API).then(async function (response2) {
-                        if (response1.data[cuenta]["nombre_ingame"] != response2.data["name"]) {
-                            await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/nombre", { nombreRiot: response2.data["name"], idUsuario: response1.data[cuenta]["id_usuario"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
-                        }
-                    })
+                try {
+                    if (response1.data[cuenta]["id_ingame"] == null) {
+                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + response1.data[cuenta]["nombre_ingame"] + "?api_key=" + API).then(async function (response2) {
+                            await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idCuenta: response1.data[cuenta]["id_cuenta"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
+                        })
+                    } else {
+                        await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" + response1.data[cuenta]["puuid_ingame"] + "?api_key=" + API).then(async function (response2) {
+                            if (response1.data[cuenta]["nombre_ingame"] != response2.data["name"]) {
+                                await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/nombre", { nombreRiot: response2.data["name"], idUsuario: response1.data[cuenta]["id_usuario"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } })
+                            }
+                        })
+                    }
+                } catch {
+                    hook.send("Fallo en la función. <@286402429258301440>")
                 }
             }
         }
