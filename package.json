@@ -1,0 +1,17 @@
+{
+  "name": "chaosupdater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zas",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/functions": "^1.6.0",
+    "axios": "^1.4.0",
+    "discord-webhook-node": "^1.1.8",
+    "node-schedule": "^2.1.1"
+  }
+}
