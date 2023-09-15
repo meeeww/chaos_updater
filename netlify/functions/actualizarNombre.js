@@ -18,10 +18,10 @@ const handler = async function (event, context) {
                             await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/ids", { idUsuario: response1.data[usuario]["id_usuario"], idRiot: response2.data["id"], puuidRiot: response2.data["puuid"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } }).then(function (respondeTest) {
                                 console.log("bien añadido")
                             }).catch(function (e) {
-                                hook.send("Fallo en la función. <@286402429258301440>")
+                                hook.send("Fallo en la función. <@286402429258301440> 5")
                             })
                         }).catch(function (e) {
-                            hook.send("Fallo en la función. <@286402429258301440>")
+                            hook.send("Fallo en la función. <@286402429258301440> 4")
                         })
                     } else {
                         await axios.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" + response1.data[usuario]["puuid_ingame"] + "?api_key=" + API).then(async function (response2) {
@@ -29,15 +29,15 @@ const handler = async function (event, context) {
                                 await axios.put("https://api.chaoschampionship.com/.netlify/functions/api/usuarios/modificar/lol/nombre", { nombreRiot: response2.data["name"], idUsuario: response1.data[usuario]["id_usuario"] }, { timeout: 10000, headers: { 'Content-Type': 'application/json' } }).then(function (respondeTest) {
                                     console.log("bien añadido")
                                 }).catch(function (e) {
-                                    hook.send("Fallo en la función. <@286402429258301440>")
+                                    hook.send("Fallo en la función. <@286402429258301440> 1")
                                 })
                             }
                         }).catch(function (e) {
-                            hook.send("Fallo en la función. <@286402429258301440>")
+                            hook.send("Fallo en la función. <@286402429258301440> 2")
                         })
                     }
                 } catch {
-                    hook.send("Fallo en la función. <@286402429258301440>")
+                    hook.send("Fallo en la función. <@286402429258301440> 3")
                 }
             }
         }
