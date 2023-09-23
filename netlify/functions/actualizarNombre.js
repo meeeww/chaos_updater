@@ -5,7 +5,7 @@ import { Webhook } from 'discord-webhook-node';
 const hook = new Webhook("https://discord.com/api/webhooks/1141434977733582900/XLZWqEsQti3PwOhxsFDXHKxU_owbh3L11iUcn0cHbl5yIlSjlUvBmu598HivoOOKdSi2");
 
 const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206"
-
+//https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SupportConPanza?api_key=RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206
 
 const handler = async function (event, context) {
     await axios.get("https://api.chaoschampionship.com/.netlify/functions/api/usuarios").then(async function (response1) {
