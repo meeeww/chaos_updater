@@ -15,7 +15,7 @@ const handler = async function (event, context) {
   await axios.get(directorio.directorio + "cuentas").then(async function (response1) {
     if (response1.status == 200) {
       for (let cuenta in response1.data) {
-        console.log(cuenta)
+        console.log(response1["data"][cuenta])
         try {
           if (response1["data"][cuenta]["id_lol"] == null && response1["data"][cuenta]["puuid_lol"] == null) {
             await axios
@@ -27,12 +27,12 @@ const handler = async function (event, context) {
               )
               .then(async function (response2) {
                 if (response2.status != 404) {
-                  console.log({
-                    id: response1["data"][cuenta]["id_cuenta"],
-                    id_lol: response2.data["id"],
-                    puuid_lol: response2.data["puuid"],
-                    invocador: response1["data"][cuenta]["invocador"],
-                  });
+                //   console.log({
+                //     id: response1["data"][cuenta]["id_cuenta"],
+                //     id_lol: response2.data["id"],
+                //     puuid_lol: response2.data["puuid"],
+                //     invocador: response1["data"][cuenta]["invocador"],
+                //   });
                   await axios.put(directorio.directorio + "cuenta", {
                     id: response1["data"][cuenta]["id_cuenta"],
                     id_lol: response2.data["id"],
@@ -51,12 +51,12 @@ const handler = async function (event, context) {
               )
               .then(async function (response2) {
                 if (response2.status != 404) {
-                  console.log({
-                    id: response1["data"][cuenta]["id_cuenta"],
-                    id_lol: response1["data"][cuenta]["id_lol"],
-                    puuid_lol: response1["data"][cuenta]["puuid_lol"],
-                    invocador: response2["data"]["name"],
-                  });
+                //   console.log({
+                //     id: response1["data"][cuenta]["id_cuenta"],
+                //     id_lol: response1["data"][cuenta]["id_lol"],
+                //     puuid_lol: response1["data"][cuenta]["puuid_lol"],
+                //     invocador: response2["data"]["name"],
+                //   });
                   await axios.put(directorio.directorio + "cuenta", {
                     id: response1["data"][cuenta]["id_cuenta"],
                     id_lol: response1["data"][cuenta]["id_lol"],
