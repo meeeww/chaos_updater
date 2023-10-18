@@ -36,7 +36,8 @@ const handler = async function (event, context) {
                   }
                 });
             });
-        } catch {
+        } catch(e) {
+            console.log(e)
           hook.send("Fallo en la función actualizar foto perfil. <@286402429258301440>");
         }
       }
@@ -44,4 +45,4 @@ const handler = async function (event, context) {
   });
 };
 
-exports.handler = schedule("*/7 * * * *", handler);
+exports.handler = schedule("*/1 * * * *", handler);
