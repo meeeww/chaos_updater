@@ -15,6 +15,7 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206";
 const handler = async function (event, context) {
   await axios.get(directorio.directorio + "usuarios").then(async function (response1) {
     if (response1.status == 200) {
+        console.log(response1.data)
       for (let usuario in response1.data) {
         console.log(usuario)
         try {
