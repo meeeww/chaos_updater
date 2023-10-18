@@ -30,6 +30,7 @@ const handler = async function (event, context) {
                       API
                   )
                   .then(async function (response3) {
+                    console.log(response3)
                     if (response3.status != 404) {
                       await axios.put(directorio.directorio + "usuario/icono", {
                         id: usuario["id_usuario"],
