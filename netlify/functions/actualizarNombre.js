@@ -26,6 +26,12 @@ const handler = async function (event, context) {
               )
               .then(async function (response2) {
                 if (response2.status != 404) {
+                  console.log({
+                    id: response1["data"][cuenta]["id_cuenta"],
+                    id_lol: response2.data["id"],
+                    puuid_lol: response2.data["puuid"],
+                    invocador: response1["data"][cuenta]["invocador"],
+                  });
                   await axios.put(directorio.directorio + "cuenta", {
                     id: response1["data"][cuenta]["id_cuenta"],
                     id_lol: response2.data["id"],
@@ -44,6 +50,12 @@ const handler = async function (event, context) {
               )
               .then(async function (response2) {
                 if (response2.status != 404) {
+                  console.log({
+                    id: response1["data"][cuenta]["id_cuenta"],
+                    id_lol: response1["data"][cuenta]["id_lol"],
+                    puuid_lol: response1["data"][cuenta]["puuid_lol"],
+                    invocador: response2["data"]["name"],
+                  });
                   await axios.put(directorio.directorio + "cuenta", {
                     id: response1["data"][cuenta]["id_cuenta"],
                     id_lol: response1["data"][cuenta]["id_lol"],
