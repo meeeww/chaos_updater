@@ -21,10 +21,7 @@ const handler = async function (event, context) {
           await axios
             .get(directorio.directorio + "usuarios/cuentas/id=" + usuario["id_usuario"])
             .then(async function (response2) {
-              console.log(response2.data.length);
-              console.log(usuario);
               if (response2.data.length > 0) {
-                console.log(response2.data);
                 await axios
                   .get(
                     "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
