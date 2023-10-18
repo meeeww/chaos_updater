@@ -21,6 +21,7 @@ const handler = async function (event, context) {
             .get(directorio.directorio + "usuarios/cuentas/id=" + usuario["id_usuario"])
             .then(async function (response2) {
               if (response2.data.length > 0) {
+                console.log(response2.data.length)
                 console.log(response2.data);
                 await axios
                   .get(
