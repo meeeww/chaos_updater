@@ -32,6 +32,10 @@ const handler = async function (event, context) {
                   .then(async function (response3) {
                     console.log(response3.data)
                     console.log(response3.data["profileIconId"])
+                    console.log({
+                        id: usuario["id_usuario"],
+                        icono: response3.data["profileIconId"].toString()
+                      })
                     if (response3.status != 404) {
                       await axios.put(directorio.directorio + "usuario/icono", {
                         id: usuario["id_usuario"],
