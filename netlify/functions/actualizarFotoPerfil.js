@@ -15,12 +15,11 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206";
 const handler = async function (event, context) {
   await axios.get(directorio.directorio + "usuarios").then(async function (response1) {
     if (response1.status == 200) {
-        console.log(response1.data)
       for (let usuario in response1.data) {
-        console.log(usuario)
+        console.log(usuario);
         try {
           await axios
-            .get(directorio.directorio + "usuarios/cuentas/id=" + usuario["id_usuario"])
+            .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"][usuario]["id_usuario"])
             .then(async function (response2) {
               if (response2.data.length > 0) {
                 await axios
