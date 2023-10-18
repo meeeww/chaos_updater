@@ -11,12 +11,10 @@ const hook = new Webhook(
 const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206";
 //https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SupportConPanza?api_key=RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206
 
-///cuentas/id=
 const handler = async function (event, context) {
   await axios.get(directorio.directorio + "usuarios").then(async function (response1) {
     if (response1.status == 200) {
       for (let usuario in response1.data) {
-        console.log(usuario);
         try {
           await axios
             .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"][usuario]["id_usuario"])
@@ -30,12 +28,6 @@ const handler = async function (event, context) {
                       API
                   )
                   .then(async function (response3) {
-                    console.log(response3.data)
-                    console.log(response3.data["profileIconId"])
-                    console.log({
-                        id: response1["data"][usuario]["id_usuario"],
-                        icono: response3.data["profileIconId"].toString()
-                      })
                     if (response3.status != 404) {
                       await axios.put(directorio.directorio + "usuario/icono", {
                         id: response1["data"][usuario]["id_usuario"],
@@ -55,4 +47,4 @@ const handler = async function (event, context) {
   });
 };
 
-exports.handler = schedule("*/1 * * * *", handler);
+exports.handler = schedule("*/5 */1 * * *", handler);
