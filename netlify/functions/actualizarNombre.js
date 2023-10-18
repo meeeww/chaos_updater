@@ -15,7 +15,6 @@ const handler = async function (event, context) {
   await axios.get(directorio.directorio + "cuentas").then(async function (response1) {
     if (response1.status == 200) {
       for (let cuenta in response1.data) {
-        console.log(response1["data"][cuenta])//
         try {
           if (response1["data"][cuenta]["id_lol"] == null && response1["data"][cuenta]["puuid_lol"] == null) {
             await axios
