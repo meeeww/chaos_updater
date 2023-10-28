@@ -24,10 +24,10 @@ const handler = async function (event, context) {
         })
         .then(async function (response1) {
             if (response1.status == 200) {
-                for (let usuario in response1.data) {
+                for (let usuario in response1.data.result) {
                     try {
                         await axios
-                            .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"][usuario]["id_usuario"], {
+                            .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"]["result"][usuario]["id_usuario"], {
                                 headers: {
                                     "x-auth-token":
                                         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
@@ -37,7 +37,7 @@ const handler = async function (event, context) {
                                 if (response2.data.length > 0) {
                                     await axios
                                         .get(
-                                            "https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/" +
+                                            "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" +
                                                 response2.data[0]["puuid_lol"] +
                                                 "?api_key=" +
                                                 API
@@ -47,7 +47,7 @@ const handler = async function (event, context) {
                                                 await axios.put(
                                                     directorio.directorio + "usuarios/icono",
                                                     {
-                                                        id: response1["data"][usuario]["id_usuario"],
+                                                        id: response1["data"]["result"][usuario]["id_usuario"],
                                                         icono: response3.data["profileIconId"].toString(),
                                                     },
                                                     {
