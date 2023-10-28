@@ -48,7 +48,7 @@ const handler = async function (event, context) {
                                             invocador: response1["data"][cuenta]["invocador"],
                                             tag: response1["data"][cuenta]["tag"],
                                         },
-                                        { headers: { "x-auth-token": "updaterPassZasPrivateToken" } }
+                                        { headers: { "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf" } }
                                     );
                                 }
                             });
@@ -76,7 +76,7 @@ const handler = async function (event, context) {
                                             invocador: response2["data"]["gameName"],
                                             tag: response2["data"]["tagLine"],
                                         },
-                                        { headers: { "x-auth-token": "updaterPassZasPrivateToken" } }
+                                        { headers: { "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf" } }
                                     );
                                 }
                             });

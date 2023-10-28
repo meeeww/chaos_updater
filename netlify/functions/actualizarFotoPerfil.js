@@ -33,7 +33,7 @@ const handler = async function (event, context) {
                         id: response1["data"][usuario]["id_usuario"],
                         icono: response3.data["profileIconId"].toString()
                       },
-                      { headers: { "x-auth-token": "updaterPassZasPrivateToken" } });
+                      { headers: { "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf" } });
                     }
                   });
               } else {
