@@ -29,13 +29,14 @@ const handler = async function (event, context) {
                                 },
                             })
                             .then(async function (response2) {
-                                console.log("----")
-                                console.log(response2.data.result)
-                                if (response2.data.length > 0) {
+                                console.log("----");
+                                console.log(response2.data.result.length);
+                                if (response2.data.result.length > 0) {
+                                    console.log(response2.data.result[0]["puuid_lol"])
                                     await axios
                                         .get(
                                             "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" +
-                                                response2[0]["puuid_lol"] +
+                                                response2.data.result[0]["puuid_lol"] +
                                                 "?api_key=" +
                                                 API
                                         )
