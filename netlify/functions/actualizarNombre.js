@@ -25,9 +25,9 @@ const handler = async function (event, context) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
-                                        response1["data"]["result"]["invocador"] +
+                                        response1["data"]["result"][cuenta]["invocador"] +
                                         "/" +
-                                        response1["data"]["result"]["tag"] +
+                                        response1["data"]["result"][cuenta]["tag"] +
                                         "?api_key=" +
                                         API
                                 )
@@ -36,10 +36,10 @@ const handler = async function (event, context) {
                                         await axios.put(
                                             directorio.directorio + "cuentas",
                                             {
-                                                id: response1["data"]["result"]["id_cuenta"],
+                                                id: response1["data"]["result"][cuenta]["id_cuenta"],
                                                 puuid_lol: response2.data["puuid"],
-                                                invocador: response1["data"]["result"]["invocador"],
-                                                tag: response1["data"]["result"]["tag"],
+                                                invocador: response1["data"]["result"][cuenta]["invocador"],
+                                                tag: response1["data"]["result"][cuenta]["tag"],
                                             },
                                             {
                                                 headers: {
@@ -65,8 +65,8 @@ const handler = async function (event, context) {
                                             .put(
                                                 directorio.directorio + "cuentas",
                                                 {
-                                                    id: response1["data"]["result"]["id_cuenta"],
-                                                    puuid_lol: response1["data"]["result"]["puuid_lol"],
+                                                    id: response1["data"]["result"][cuenta]["id_cuenta"],
+                                                    puuid_lol: response1["data"]["result"][cuenta]["puuid_lol"],
                                                     invocador: response2["data"]["gameName"],
                                                     tag: response2["data"]["tagLine"],
                                                 },
