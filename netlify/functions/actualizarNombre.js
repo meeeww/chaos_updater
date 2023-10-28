@@ -23,15 +23,15 @@ const handler = async function (event, context) {
                 for (let cuenta in response1.data.result) {
                     console.log(response1["data"]["result"]);
                     console.log(response1["data"]["result"][cuenta]);
-                    console.log(cuenta)
+                    console.log(cuenta);
                     try {
                         if (response1["data"]["result"][cuenta]["puuid_lol"] == null) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
-                                        response1["data"][cuenta]["invocador"] +
+                                        response1["data"]["result"]["invocador"] +
                                         "/" +
-                                        response1["data"][cuenta]["tag"] +
+                                        response1["data"]["result"]["tag"] +
                                         "?api_key=" +
                                         API
                                 )
@@ -46,10 +46,10 @@ const handler = async function (event, context) {
                                         await axios.put(
                                             directorio.directorio + "cuentas",
                                             {
-                                                id: response1["data"][cuenta]["id_cuenta"],
+                                                id: response1["data"]["result"]["id_cuenta"],
                                                 puuid_lol: response2.data["puuid"],
-                                                invocador: response1["data"][cuenta]["invocador"],
-                                                tag: response1["data"][cuenta]["tag"],
+                                                invocador: response1["data"]["result"]["invocador"],
+                                                tag: response1["data"]["result"]["tag"],
                                             },
                                             {
                                                 headers: {
@@ -64,7 +64,7 @@ const handler = async function (event, context) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/" +
-                                        response1["data"][cuenta]["puuid_lol"] +
+                                        response1["data"]["result"]["puuid_lol"] +
                                         "?api_key=" +
                                         API
                                 )
@@ -79,8 +79,8 @@ const handler = async function (event, context) {
                                         await axios.put(
                                             directorio.directorio + "cuentas",
                                             {
-                                                id: response1["data"][cuenta]["id_cuenta"],
-                                                puuid_lol: response1["data"][cuenta]["puuid_lol"],
+                                                id: response1["data"]["result"]["id_cuenta"],
+                                                puuid_lol: response1["data"]["result"]["puuid_lol"],
                                                 invocador: response2["data"]["gameName"],
                                                 tag: response2["data"]["tagLine"],
                                             },
