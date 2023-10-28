@@ -10,11 +10,6 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206";
 //https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SupportConPanza?api_key=RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206
 
 const handler = async function (event, context) {
-    console.log(directorio.directorio + "usuarios", {
-        headers: {
-            "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
-        },
-    });
     await axios
         .get(directorio.directorio + "cuentas", {
             headers: {
@@ -25,9 +20,10 @@ const handler = async function (event, context) {
         .then(async function (response1) {
             if (response1.status == 200) {
                 for (let cuenta in response1.data) {
-                    console.log(response1["data"])
+                    console.log(response1["data"]["result"])
+                    console.log(response1["data"]["result"][cuenta])
                     try {
-                        if (response1["data"]["result"][cuenta]["id_lol"] == null && response1["data"]["result"][cuenta]["puuid_lol"] == null) {
+                        if (response1["data"]["result"][cuenta]["puuid_lol"] == null) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
