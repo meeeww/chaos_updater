@@ -19,11 +19,7 @@ const handler = async function (event, context) {
         })
         .then(async function (response1) {
             if (response1.status == 200) {
-                //console.log(response1.data)
                 for (let cuenta in response1.data.result) {
-                    console.log(response1["data"]["result"]);
-                    console.log(response1["data"]["result"][cuenta]);
-                    console.log(cuenta);
                     try {
                         if (response1["data"]["result"][cuenta]["puuid_lol"] == null) {
                             await axios
@@ -37,12 +33,6 @@ const handler = async function (event, context) {
                                 )
                                 .then(async function (response2) {
                                     if (response2.status != 404) {
-                                        //   console.log({
-                                        //     id: response1["data"][cuenta]["id_cuenta"],
-                                        //     id_lol: response2.data["id"],
-                                        //     puuid_lol: response2.data["puuid"],
-                                        //     invocador: response1["data"][cuenta]["invocador"],
-                                        //   });
                                         await axios.put(
                                             directorio.directorio + "cuentas",
                                             {
@@ -69,28 +59,27 @@ const handler = async function (event, context) {
                                         API
                                 )
                                 .then(async function (response2) {
+                                    console.log(response2);
                                     if (response2.status != 404) {
-                                        //   console.log({
-                                        //     id: response1["data"][cuenta]["id_cuenta"],
-                                        //     id_lol: response1["data"][cuenta]["id_lol"],
-                                        //     puuid_lol: response1["data"][cuenta]["puuid_lol"],
-                                        //     invocador: response2["data"]["name"],
-                                        //   });
-                                        await axios.put(
-                                            directorio.directorio + "cuentas",
-                                            {
-                                                id: response1["data"]["result"]["id_cuenta"],
-                                                puuid_lol: response1["data"]["result"]["puuid_lol"],
-                                                invocador: response2["data"]["gameName"],
-                                                tag: response2["data"]["tagLine"],
-                                            },
-                                            {
-                                                headers: {
-                                                    "x-auth-token":
-                                                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
+                                        await axios
+                                            .put(
+                                                directorio.directorio + "cuentas",
+                                                {
+                                                    id: response1["data"]["result"]["id_cuenta"],
+                                                    puuid_lol: response1["data"]["result"]["puuid_lol"],
+                                                    invocador: response2["data"]["gameName"],
+                                                    tag: response2["data"]["tagLine"],
                                                 },
-                                            }
-                                        );
+                                                {
+                                                    headers: {
+                                                        "x-auth-token":
+                                                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
+                                                    },
+                                                }
+                                            )
+                                            .then(async function (respuesta) {
+                                                console.log(respuesta);
+                                            });
                                     }
                                 });
                         }
