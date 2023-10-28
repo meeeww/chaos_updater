@@ -21,8 +21,6 @@ const handler = async function (event, context) {
             if (response1.status == 200) {
                 for (let usuario in response1.data.result) {
                     try {
-                      console.log(response1["data"])
-                      console.log(response1["data"]["result"][usuario]["id_usuario"])
                         await axios
                             .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"]["result"][usuario]["id_usuario"], {
                                 headers: {
@@ -31,6 +29,8 @@ const handler = async function (event, context) {
                                 },
                             })
                             .then(async function (response2) {
+                                console.log(response2.data.length)
+                                console.log(response2.data["result"])
                                 if (response2.data.length > 0) {
                                     await axios
                                         .get(
@@ -56,7 +56,6 @@ const handler = async function (event, context) {
                                                 );
                                             }
                                         });
-                                } else {
                                 }
                             });
                     } catch (e) {
