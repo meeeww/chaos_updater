@@ -19,8 +19,8 @@ const handler = async function (event, context) {
         })
         .then(async function (response1) {
             if (response1.status == 200) {
-                console.log(response1.data)
-                for (let cuenta in response1.data.data) {
+                //console.log(response1.data)
+                for (let cuenta in response1.data.result) {
                     console.log(response1["data"]["result"]);
                     console.log(response1["data"]["result"][cuenta]);
                     console.log(cuenta)
