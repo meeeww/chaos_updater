@@ -30,7 +30,6 @@ const handler = async function (event, context) {
                             })
                             .then(async function (response2) {
                                 if (response2.data.result.length > 0) {
-                                    console.log(response2.data.result[0]["puuid_lol"])
                                     await axios
                                         .get(
                                             "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" +
@@ -69,4 +68,4 @@ const handler = async function (event, context) {
         });
 };
 
-exports.handler = schedule("*/1 * * * *", handler);
+exports.handler = schedule("*/11 * * * *", handler);
