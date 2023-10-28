@@ -29,13 +29,14 @@ const handler = async function (event, context) {
                                 },
                             })
                             .then(async function (response2) {
-                                console.log(response2.data.length)
-                                console.log(response2.data["result"])
+                                console.log("----")
+                                console.log(response2)
+                                console.log(response2.data)
                                 if (response2.data.length > 0) {
                                     await axios
                                         .get(
                                             "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/" +
-                                                response2.data["result"][0]["puuid_lol"] +
+                                                response2[0]["puuid_lol"] +
                                                 "?api_key=" +
                                                 API
                                         )
@@ -44,7 +45,7 @@ const handler = async function (event, context) {
                                                 await axios.put(
                                                     directorio.directorio + "usuarios/icono",
                                                     {
-                                                        id: response1["data"]["result"][usuario]["id_usuario"],
+                                                        id: response1["data"][usuario]["id_usuario"],
                                                         icono: response3.data["profileIconId"].toString(),
                                                     },
                                                     {
