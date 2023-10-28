@@ -25,8 +25,9 @@ const handler = async function (event, context) {
         .then(async function (response1) {
             if (response1.status == 200) {
                 for (let cuenta in response1.data) {
+                    console.log(response1["data"])
                     try {
-                        if (response1["data"][cuenta]["id_lol"] == null && response1["data"][cuenta]["puuid_lol"] == null) {
+                        if (response1["data"]["result"][cuenta]["id_lol"] == null && response1["data"]["result"][cuenta]["puuid_lol"] == null) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
