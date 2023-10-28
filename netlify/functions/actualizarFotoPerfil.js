@@ -30,8 +30,7 @@ const handler = async function (event, context) {
                             })
                             .then(async function (response2) {
                                 console.log("----")
-                                console.log(response2)
-                                console.log(response2.data)
+                                console.log(response2.data.result)
                                 if (response2.data.length > 0) {
                                     await axios
                                         .get(
