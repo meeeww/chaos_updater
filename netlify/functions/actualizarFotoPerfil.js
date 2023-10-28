@@ -29,8 +29,6 @@ const handler = async function (event, context) {
                                 },
                             })
                             .then(async function (response2) {
-                                console.log("----");
-                                console.log(response2.data.result.length);
                                 if (response2.data.result.length > 0) {
                                     console.log(response2.data.result[0]["puuid_lol"])
                                     await axios
@@ -45,7 +43,7 @@ const handler = async function (event, context) {
                                                 await axios.put(
                                                     directorio.directorio + "usuarios/icono",
                                                     {
-                                                        id: response1["data"][usuario]["id_usuario"],
+                                                        id: response1["data"]["result"][usuario]["id_usuario"],
                                                         icono: response3.data["profileIconId"].toString(),
                                                     },
                                                     {
