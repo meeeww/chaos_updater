@@ -59,27 +59,22 @@ const handler = async function (event, context) {
                                         API
                                 )
                                 .then(async function (response2) {
-                                    console.log(response2);
                                     if (response2.status != 404) {
-                                        await axios
-                                            .put(
-                                                directorio.directorio + "cuentas",
-                                                {
-                                                    id: response1["data"]["result"][cuenta]["id_cuenta"],
-                                                    puuid_lol: response1["data"]["result"][cuenta]["puuid_lol"],
-                                                    invocador: response2["data"]["gameName"],
-                                                    tag: response2["data"]["tagLine"],
+                                        await axios.put(
+                                            directorio.directorio + "cuentas",
+                                            {
+                                                id: response1["data"]["result"][cuenta]["id_cuenta"],
+                                                puuid_lol: response1["data"]["result"][cuenta]["puuid_lol"],
+                                                invocador: response2["data"]["gameName"],
+                                                tag: response2["data"]["tagLine"],
+                                            },
+                                            {
+                                                headers: {
+                                                    "x-auth-token":
+                                                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
                                                 },
-                                                {
-                                                    headers: {
-                                                        "x-auth-token":
-                                                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf4",
-                                                    },
-                                                }
-                                            )
-                                            .then(async function (respuesta) {
-                                                console.log(respuesta);
-                                            });
+                                            }
+                                        );
                                     }
                                 });
                         }
