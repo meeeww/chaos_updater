@@ -20,7 +20,7 @@ const handler = async function (event, context) {
                                 "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
                                     response1["data"][cuenta]["invocador"] +
                                     "/" +
-                                    response1["data"]["cuenta"]["tag"] +
+                                    response1["data"][cuenta]["tag"] +
                                     "?api_key=" +
                                     API
                             )
