@@ -12,6 +12,7 @@ const API = "RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206";
 //https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/SupportConPanza?api_key=RGAPI-48c2e07c-b903-4720-be64-d3ba9a416206
 
 const handler = async function (event, context) {
+  console.log(directorio.directorio + "usuarios", { headers: { "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf" } })
   await axios.get(directorio.directorio + "usuarios", { headers: { "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInJvbCI6MjAsImlhdCI6MTY5ODE3OTA4N30.B0jQsHr758WzdB7Vv50q-kMHQoNlHVQvwq5E6Wpuvf" } }).then(async function (response1) {
     if (response1.status == 200) {
       for (let usuario in response1.data) {
@@ -45,6 +46,8 @@ const handler = async function (event, context) {
         }
       }
     }
+  }).catch(async function (error) {
+    console.log(error)
   });
 };
 
