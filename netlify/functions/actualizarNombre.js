@@ -64,7 +64,7 @@ const handler = async function (event, context) {
                             await axios
                                 .get(
                                     "https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/" +
-                                        response1["data"]["result"]["puuid_lol"] +
+                                        response1["data"]["result"][cuenta]["puuid_lol"] +
                                         "?api_key=" +
                                         API
                                 )
