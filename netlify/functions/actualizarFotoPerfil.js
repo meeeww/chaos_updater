@@ -32,7 +32,8 @@ const handler = async function (event, context) {
                       await axios.put(directorio.directorio + "usuario/icono", {
                         id: response1["data"][usuario]["id_usuario"],
                         icono: response3.data["profileIconId"].toString()
-                      });
+                      },
+                      { headers: { "x-auth-token": "updaterPassZasPrivateToken" } });
                     }
                   });
               } else {

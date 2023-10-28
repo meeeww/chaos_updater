@@ -40,12 +40,16 @@ const handler = async function (event, context) {
                                     //     puuid_lol: response2.data["puuid"],
                                     //     invocador: response1["data"][cuenta]["invocador"],
                                     //   });
-                                    await axios.put(directorio.directorio + "cuenta", {
-                                        id: response1["data"][cuenta]["id_cuenta"],
-                                        puuid_lol: response2.data["puuid"],
-                                        invocador: response1["data"][cuenta]["invocador"],
-                                        tag: response1["data"][cuenta]["tag"],
-                                    });
+                                    await axios.put(
+                                        directorio.directorio + "cuenta",
+                                        {
+                                            id: response1["data"][cuenta]["id_cuenta"],
+                                            puuid_lol: response2.data["puuid"],
+                                            invocador: response1["data"][cuenta]["invocador"],
+                                            tag: response1["data"][cuenta]["tag"],
+                                        },
+                                        { headers: { "x-auth-token": "updaterPassZasPrivateToken" } }
+                                    );
                                 }
                             });
                     } else {
@@ -64,12 +68,16 @@ const handler = async function (event, context) {
                                     //     puuid_lol: response1["data"][cuenta]["puuid_lol"],
                                     //     invocador: response2["data"]["name"],
                                     //   });
-                                    await axios.put(directorio.directorio + "cuentas", {
-                                        id: response1["data"][cuenta]["id_cuenta"],
-                                        puuid_lol: response1["data"][cuenta]["puuid_lol"],
-                                        invocador: response2["data"]["gameName"],
-                                        tag: response2["data"]["tagLine"],
-                                    });
+                                    await axios.put(
+                                        directorio.directorio + "cuentas",
+                                        {
+                                            id: response1["data"][cuenta]["id_cuenta"],
+                                            puuid_lol: response1["data"][cuenta]["puuid_lol"],
+                                            invocador: response2["data"]["gameName"],
+                                            tag: response2["data"]["tagLine"],
+                                        },
+                                        { headers: { "x-auth-token": "updaterPassZasPrivateToken" } }
+                                    );
                                 }
                             });
                     }
