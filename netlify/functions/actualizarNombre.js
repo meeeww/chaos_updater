@@ -15,6 +15,14 @@ const handler = async function (event, context) {
             for (let cuenta in response1.data) {
                 try {
                     if (response1["data"][cuenta]["id_lol"] == null && response1["data"][cuenta]["puuid_lol"] == null) {
+                        console.log(
+                            "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
+                                response1["data"][cuenta]["invocador"] +
+                                "/" +
+                                response1["data"][cuenta]["tag"] +
+                                "?api_key=" +
+                                API
+                        );
                         await axios
                             .get(
                                 "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" +
@@ -60,7 +68,7 @@ const handler = async function (event, context) {
                                         id: response1["data"][cuenta]["id_cuenta"],
                                         puuid_lol: response1["data"][cuenta]["puuid_lol"],
                                         invocador: response2["data"]["gameName"],
-                                        tag: response2["data"]["tagLine"]
+                                        tag: response2["data"]["tagLine"],
                                     });
                                 }
                             });
