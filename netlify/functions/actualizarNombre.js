@@ -80,7 +80,12 @@ const handler = async function (event, context) {
                         }
                     } catch (e) {
                         console.log(e);
-                        hook.send("Fallo en la función actualizar nombre. <@286402429258301440>");
+                        hook.send(
+                            "Fallo en la función actualizar nombre." +
+                                response1.data.result[cuenta]["invocador"] +
+                                "#" +
+                                response1.data.result[cuenta]["tag"]
+                        );
                     }
                 }
             }
