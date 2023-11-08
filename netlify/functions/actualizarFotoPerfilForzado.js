@@ -21,7 +21,7 @@ const handler = async function (event, context) {
             if (response1.status == 200) {
                 for (let usuario in response1.data.result) {
                     try {
-                        if (response1["data"]["result"][usuario]["icono"] == 0) {
+                        if (response1["data"]["result"][usuario]["icono"] != 0) {
                             await axios
                                 .get(directorio.directorio + "usuarios/cuentas/id=" + response1["data"]["result"][usuario]["id_usuario"], {
                                     headers: {
@@ -72,4 +72,4 @@ const handler = async function (event, context) {
         });
 };
 
-exports.handler = schedule("*/25 * * * *", handler);
+exports.handler = schedule("5 10 * * *", handler);
