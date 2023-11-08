@@ -95,4 +95,4 @@ const handler = async function (event, context) {
         });
 };
 
-exports.handler = schedule("*/2 * * * *", handler);
+exports.handler = schedule("*/15 * * * *", handler);

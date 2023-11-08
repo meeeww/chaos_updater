@@ -61,6 +61,8 @@ const handler = async function (event, context) {
                         hook.send("Fallo en la función actualizar foto perfil. <@286402429258301440>");
                     }
                 }
+            } else {
+                hook.send("Fallo en la función actualizar foto perfil. <@286402429258301440> Error:" + response1.status);
             }
         })
         .catch(async function (error) {
