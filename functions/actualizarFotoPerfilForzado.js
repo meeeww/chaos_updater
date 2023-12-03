@@ -1,5 +1,5 @@
 import axios from "axios";
-import directorio from "../variables.mjs";
+import directorio from "../variables.json" assert { type: "json" };
 
 import { Webhook } from "discord-webhook-node";
 const hook = new Webhook("https://discord.com/api/webhooks/1141434977733582900/XLZWqEsQti3PwOhxsFDXHKxU_owbh3L11iUcn0cHbl5yIlSjlUvBmu598HivoOOKdSi2");

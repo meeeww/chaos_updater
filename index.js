@@ -15,3 +15,9 @@ cron.schedule("0 7 * * *", () => {
 cron.schedule("*/3 * * * *", () => {
   actualizarNombre();
 });
+
+//hay que hacer las funciones:
+// recoger estadisticas de jugadores
+// quitar el @ de los links de la gente
+
+// arreglar errores en actualizar foto de perfil y actualizar nombre
