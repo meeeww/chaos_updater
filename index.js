@@ -5,7 +5,11 @@ import actualizarFotoPerfilForzado from "./functions/actualizarFotoPerfilForzado
 import actualizarNombre from "./functions/actualizarNombre.js";
 import conseguirEstadisticas from "./functions/conseguirEstadisticas.js"
 
+
+  console.log("Actualizando foto de perfil.")
+  actualizarFotoPerfil();
 // cron.schedule("*/5 * * * *", () => {
+//   console.log("Actualizando foto de perfil.")
 //   actualizarFotoPerfil();
 // });
 
@@ -18,6 +22,6 @@ import conseguirEstadisticas from "./functions/conseguirEstadisticas.js"
 // });
 
 cron.schedule("*/2 * * * * *", () => {
-  console.log("hey")
-  conseguirEstadisticas();
+  //console.log("hey")
+  //conseguirEstadisticas();
 });
